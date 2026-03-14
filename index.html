@@ -241,15 +241,9 @@
       color: var(--pink);
     }
 
-    /* Mobile */
     @media (max-width: 900px) {
-      .main-content {
-        flex-direction: column;
-      }
-      .sidebar {
-        width: 100%;
-        position: static;
-      }
+      .main-content { flex-direction: column; }
+      .sidebar { width: 100%; position: static; }
     }
   </style>
 </head>
@@ -263,8 +257,8 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
       <h3>📂 Categories</h3>
-      <button class="category-btn active" data-filter="pinay" onclick="setFilter('pinay')">🇵🇭 Pinay / Filipina</button>
-      <button class="category-btn" data-filter="all" onclick="setFilter('all')">🌍 All Rooms</button>
+      <button class="category-btn" data-filter="pinay" onclick="setFilter('pinay')">🇵🇭 Pinay / Filipina</button>
+      <button class="category-btn active" data-filter="all" onclick="setFilter('all')">🌍 All Rooms</button>
       <button class="category-btn" data-filter="asian" onclick="setFilter('asian')">🌏 Asian</button>
       <button class="category-btn" data-filter="latina" onclick="setFilter('latina')">🇧🇷 Latina</button>
       <button class="category-btn" data-filter="blonde" onclick="setFilter('blonde')">👱 Blonde</button>
@@ -286,7 +280,7 @@
         </select>
       </div>
 
-      <div id="loading">Loading premium Pinay cams...</div>
+      <div id="loading">Loading live cams...</div>
       <div id="rooms"></div>
     </div>
   </div>
@@ -297,13 +291,12 @@
 
   <script>
     let roomsData = [];
-    let currentFilter = "pinay";
+    let currentFilter = "all";
     let currentSort = "viewers";
     let currentSearch = "";
 
     function setFilter(tag) {
       currentFilter = tag;
-      // Highlight active category
       document.querySelectorAll('.category-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.filter === tag);
       });
@@ -338,7 +331,9 @@
           const lowerTags = room.tags.map(t => t.toLowerCase());
           
           if (currentFilter === "pinay") {
-            return lowerTags.some(t => t.includes("pinay") || t.includes("filipina"));
+            return lowerTags.some(t => 
+              t.includes("pinay") || t.includes("filipina") || t.includes("philippines")
+            );
           }
           return lowerTags.some(t => t.includes(currentFilter));
         });
@@ -351,7 +346,10 @@
       }
 
       if (rooms.length === 0) {
-        container.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:#ff3ea5;font-size:1.2rem;">No matches found</p>`;
+        container.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:#ff3ea5;font-size:1.2rem;padding:40px;">
+          No matches found for this filter.<br>
+          <button onclick="setFilter('all')" style="margin-top:15px;padding:10px 20px;background:#ff3ea5;color:white;border:none;border-radius:12px;cursor:pointer;">Show All Rooms</button>
+        </p>`;
         return;
       }
 
@@ -380,16 +378,19 @@
       const loading = document.getElementById("loading");
       loading.style.display = "block";
 
-      fetch("https://corsproxy.io/?https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=T2CSW&client_ip=request_ip")
+      // NEW SUPER-RELIABLE PROXY
+      const apiUrl = "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=T2CSW&client_ip=request_ip";
+      fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}`)
         .then(res => res.json())
         .then(data => {
-          roomsData = data.results || [];
+          const json = JSON.parse(data.contents);
+          roomsData = json.results || [];
           document.getElementById("onlineCount").textContent = `${roomsData.length.toLocaleString()} models online right now`;
           renderRooms();
         })
         .catch(err => {
           console.error(err);
-          loading.innerHTML = `⚠️ Unable to load cams.<br>Try refreshing.`;
+          loading.innerHTML = `⚠️ Could not load cams right now.<br>Try refreshing the page.`;
         });
     }
 
