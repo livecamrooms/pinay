@@ -3,85 +3,135 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Live Cam Rooms</title>
+
+<title>Live Cam Directory</title>
 
 <style>
+
 body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#0f0f0f;
-  color:white;
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:#0b0b0f;
+color:white;
 }
 
 header{
-  text-align:center;
-  padding:20px;
-  font-size:28px;
-  font-weight:bold;
-  color:#ff4fa3;
+text-align:center;
+padding:25px;
+font-size:32px;
+font-weight:bold;
+color:#ff3ea5;
+letter-spacing:1px;
+}
+
+.controls{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
+margin-bottom:10px;
+}
+
+button{
+background:#1a1a1f;
+border:none;
+color:white;
+padding:8px 14px;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
+transition:.2s;
+}
+
+button:hover{
+background:#ff3ea5;
+}
+
+select{
+background:#1a1a1f;
+border:none;
+color:white;
+padding:8px 12px;
+border-radius:6px;
 }
 
 #rooms{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
-  gap:18px;
-  padding:20px;
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+gap:18px;
+padding:20px;
 }
 
 .card{
-  background:#1a1a1a;
-  border-radius:12px;
-  overflow:hidden;
-  transition:transform .25s, box-shadow .25s;
+background:#141419;
+border-radius:12px;
+overflow:hidden;
+transition:transform .25s, box-shadow .25s;
+position:relative;
 }
 
 .card:hover{
-  transform:scale(1.04);
-  box-shadow:0 0 15px rgba(255,79,163,.4);
+transform:scale(1.05);
+box-shadow:0 0 18px rgba(255,62,165,.45);
 }
 
 .thumb{
-  width:100%;
-  height:170px;
-  object-fit:cover;
+width:100%;
+height:170px;
+object-fit:cover;
+}
+
+.viewerBadge{
+position:absolute;
+top:8px;
+right:8px;
+background:#00ffa6;
+color:black;
+font-size:12px;
+padding:4px 6px;
+border-radius:4px;
+font-weight:bold;
 }
 
 .info{
-  padding:12px;
+padding:12px;
 }
 
 .username{
-  font-weight:bold;
-  font-size:16px;
-  margin-bottom:4px;
-}
-
-.viewers{
-  color:#39ffb6;
-  font-size:13px;
+font-weight:bold;
+font-size:16px;
+margin-bottom:4px;
 }
 
 .tags{
-  color:#ff4fa3;
-  font-size:12px;
-  margin-top:4px;
+color:#ff3ea5;
+font-size:12px;
+margin-top:5px;
 }
 
 .watch{
-  display:block;
-  margin-top:10px;
-  text-align:center;
-  padding:8px;
-  background:#ff2d8f;
-  border-radius:6px;
-  text-decoration:none;
-  color:white;
-  font-weight:bold;
+display:block;
+margin-top:10px;
+text-align:center;
+padding:8px;
+background:#ff2d8f;
+border-radius:6px;
+text-decoration:none;
+color:white;
+font-weight:bold;
 }
 
 .watch:hover{
-  background:#ff4fa3;
+background:#ff4fb0;
 }
+
+footer{
+text-align:center;
+font-size:12px;
+opacity:.6;
+padding:20px;
+}
+
 </style>
 </head>
 
@@ -89,50 +139,115 @@ header{
 
 <header>🔥 Live Cam Streams</header>
 
+<div class="controls">
+
+<button onclick="setFilter('all')">All</button>
+<button onclick="setFilter('pinay')">Pinay</button>
+<button onclick="setFilter('latina')">Latina</button>
+<button onclick="setFilter('blonde')">Blonde</button>
+<button onclick="setFilter('petite')">Petite</button>
+
+<select onchange="setSort(this.value)">
+<option value="viewers">Most Viewers</option>
+<option value="new">Newest</option>
+</select>
+
+</div>
+
 <div id="rooms"></div>
+
+<footer>
+Live rooms update automatically every 30 seconds
+</footer>
 
 <script>
 
-const allowedTags = ["pinay","filipina","philippines"];
-  
-fetch("https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=T2CSW&client_ip=request_ip")
-.then(res => res.json())
-.then(data => {
+let roomsData = [];
+let currentFilter = "all";
+let currentSort = "viewers";
 
-  const container = document.getElementById("rooms");
+function setFilter(tag){
+currentFilter = tag;
+renderRooms();
+}
 
-  data.results.forEach(room => {
+function setSort(type){
+currentSort = type;
+renderRooms();
+}
 
-    if(!room.tags) return;
+function renderRooms(){
 
-    const match = room.tags.some(tag =>
-      allowedTags.includes(tag.toLowerCase())
-    );
+const container = document.getElementById("rooms");
+container.innerHTML = "";
 
-    if(match){
+let rooms = [...roomsData];
 
-      const card = document.createElement("div");
-      card.className="card";
+if(currentSort === "viewers"){
+rooms.sort((a,b)=>b.num_users-a.num_users);
+}
 
-      card.innerHTML = `
-        <img class="thumb" src="${room.image_url_360x270}">
-        <div class="info">
-          <div class="username">${room.username}</div>
-          <div class="viewers">${room.num_users} watching</div>
-          <div class="tags">${room.tags.slice(0,4).join(", ")}</div>
-          <a class="watch" href="https://chaturbate.com/${room.username}/?tour=T2CSW" target="_blank">
-            Watch Live
-          </a>
-        </div>
-      `;
+if(currentFilter !== "all"){
+rooms = rooms.filter(room =>
+room.tags && room.tags.some(tag =>
+tag.toLowerCase().includes(currentFilter)
+)
+);
+}
 
-      container.appendChild(card);
+rooms.forEach(room=>{
 
-    }
+const card = document.createElement("div");
+card.className="card";
 
-  });
+card.innerHTML=`
+
+<div class="viewerBadge">${room.num_users}</div>
+
+<img class="thumb" src="${room.image_url_360x270}">
+
+<div class="info">
+
+<div class="username">${room.username}</div>
+
+<div class="tags">${room.tags ? room.tags.slice(0,4).join(", ") : ""}</div>
+
+<a class="watch" href="https://chaturbate.com/${room.username}/?tour=T2CSW" target="_blank">
+Watch Live
+</a>
+
+</div>
+`;
+
+container.appendChild(card);
 
 });
+
+}
+
+function loadRooms(){
+
+fetch("https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=T2CSW&client_ip=request_ip")
+
+.then(res=>res.json())
+
+.then(data=>{
+
+roomsData = data.results;
+
+renderRooms();
+
+});
+
+}
+
+loadRooms();
+
+/* auto refresh */
+
+setInterval(()=>{
+loadRooms();
+},30000);
 
 </script>
 
