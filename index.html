@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Cam Rooms</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#0f0f0f;
+  color:white;
+}
+
+header{
+  text-align:center;
+  padding:20px;
+  font-size:28px;
+  font-weight:bold;
+  color:#ff4fa3;
+}
+
+#rooms{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:18px;
+  padding:20px;
+}
+
+.card{
+  background:#1a1a1a;
+  border-radius:12px;
+  overflow:hidden;
+  transition:transform .25s, box-shadow .25s;
+}
+
+.card:hover{
+  transform:scale(1.04);
+  box-shadow:0 0 15px rgba(255,79,163,.4);
+}
+
+.thumb{
+  width:100%;
+  height:170px;
+  object-fit:cover;
+}
+
+.info{
+  padding:12px;
+}
+
+.username{
+  font-weight:bold;
+  font-size:16px;
+  margin-bottom:4px;
+}
+
+.viewers{
+  color:#39ffb6;
+  font-size:13px;
+}
+
+.tags{
+  color:#ff4fa3;
+  font-size:12px;
+  margin-top:4px;
+}
+
+.watch{
+  display:block;
+  margin-top:10px;
+  text-align:center;
+  padding:8px;
+  background:#ff2d8f;
+  border-radius:6px;
+  text-decoration:none;
+  color:white;
+  font-weight:bold;
+}
+
+.watch:hover{
+  background:#ff4fa3;
+}
+</style>
+</head>
+
+<body>
+
+<header>🔥 Live Cam Streams</header>
+
+<div id="rooms"></div>
+
+<script>
+
+const allowedTags = ["pinay","filipina","philippines"];
+  
+fetch("https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=T2CSW&client_ip=request_ip")
+.then(res => res.json())
+.then(data => {
+
+  const container = document.getElementById("rooms");
+
+  data.results.forEach(room => {
+
+    if(!room.tags) return;
+
+    const match = room.tags.some(tag =>
+      allowedTags.includes(tag.toLowerCase())
+    );
+
+    if(match){
+
+      const card = document.createElement("div");
+      card.className="card";
+
+      card.innerHTML = `
+        <img class="thumb" src="${room.image_url_360x270}">
+        <div class="info">
+          <div class="username">${room.username}</div>
+          <div class="viewers">${room.num_users} watching</div>
+          <div class="tags">${room.tags.slice(0,4).join(", ")}</div>
+          <a class="watch" href="https://chaturbate.com/${room.username}/?tour=T2CSW" target="_blank">
+            Watch Live
+          </a>
+        </div>
+      `;
+
+      container.appendChild(card);
+
+    }
+
+  });
+
+});
+
+</script>
+
+</body>
+</html>
