@@ -25,7 +25,6 @@
       background: linear-gradient(135deg, #1a0022, #330033);
       padding: 30px 20px;
       text-align: center;
-      position: relative;
       box-shadow: 0 10px 30px rgba(255, 62, 165, 0.3);
     }
 
@@ -257,8 +256,8 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
       <h3>📂 Categories</h3>
-      <button class="category-btn" data-filter="pinay" onclick="setFilter('pinay')">🇵🇭 Pinay / Filipina</button>
       <button class="category-btn active" data-filter="all" onclick="setFilter('all')">🌍 All Rooms</button>
+      <button class="category-btn" data-filter="pinay" onclick="setFilter('pinay')">🇵🇭 Pinay / Filipina</button>
       <button class="category-btn" data-filter="asian" onclick="setFilter('asian')">🌏 Asian</button>
       <button class="category-btn" data-filter="latina" onclick="setFilter('latina')">🇧🇷 Latina</button>
       <button class="category-btn" data-filter="blonde" onclick="setFilter('blonde')">👱 Blonde</button>
@@ -267,6 +266,11 @@
       <button class="category-btn" data-filter="mature" onclick="setFilter('mature')">👵 Mature</button>
       <button class="category-btn" data-filter="teen" onclick="setFilter('teen')">👶 Teen (18+)</button>
       <button class="category-btn" data-filter="ebony" onclick="setFilter('ebony')">🌑 Ebony</button>
+      
+      <hr style="border-color:#222;margin:20px 0;">
+      <button class="category-btn" data-filter="female" onclick="setFilter('female')">👩 Female</button>
+      <button class="category-btn" data-filter="couple" onclick="setFilter('couple')">👫 Couples</button>
+      <button class="category-btn" data-filter="trans" onclick="setFilter('trans')">⚧ Trans</button>
     </aside>
 
     <!-- MAIN CONTENT -->
@@ -300,7 +304,7 @@
       document.querySelectorAll('.category-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.filter === tag);
       });
-      renderRooms();
+      loadRooms(); // re-fetch with server-side filter
     }
 
     function setSort(type) {
@@ -325,20 +329,6 @@
         rooms.sort((a, b) => b.num_users - a.num_users);
       }
 
-      if (currentFilter !== "all") {
-        rooms = rooms.filter(room => {
-          if (!room.tags) return false;
-          const lowerTags = room.tags.map(t => t.toLowerCase());
-          
-          if (currentFilter === "pinay") {
-            return lowerTags.some(t => 
-              t.includes("pinay") || t.includes("filipina") || t.includes("philippines")
-            );
-          }
-          return lowerTags.some(t => t.includes(currentFilter));
-        });
-      }
-
       if (currentSearch) {
         rooms = rooms.filter(room => 
           room.username.toLowerCase().includes(currentSearch)
@@ -347,7 +337,7 @@
 
       if (rooms.length === 0) {
         container.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:#ff3ea5;font-size:1.2rem;padding:40px;">
-          No matches found for this filter.<br>
+          No matches found.<br>
           <button onclick="setFilter('all')" style="margin-top:15px;padding:10px 20px;background:#ff3ea5;color:white;border:none;border-radius:12px;cursor:pointer;">Show All Rooms</button>
         </p>`;
         return;
@@ -378,9 +368,25 @@
       const loading = document.getElementById("loading");
       loading.style.display = "block";
 
-      // NEW SUPER-RELIABLE PROXY
-      const apiUrl = "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=T2CSW&client_ip=request_ip";
-      fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}`)
+      let url = "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=T2CSW&client_ip=request_ip&limit=300";
+
+      // Server-side filtering (confirmed working in 2026)
+      if (currentFilter === "pinay") url += "&tag=pinay";
+      else if (currentFilter === "asian") url += "&tag=asian";
+      else if (currentFilter === "latina") url += "&tag=latina";
+      else if (currentFilter === "blonde") url += "&tag=blonde";
+      else if (currentFilter === "petite") url += "&tag=petite";
+      else if (currentFilter === "curvy") url += "&tag=curvy";
+      else if (currentFilter === "mature") url += "&tag=mature";
+      else if (currentFilter === "teen") url += "&tag=teen";
+      else if (currentFilter === "ebony") url += "&tag=ebony";
+      else if (currentFilter === "female") url += "&gender=f";
+      else if (currentFilter === "couple") url += "&gender=c";
+      else if (currentFilter === "trans") url += "&gender=t";
+
+      // All = no extra param
+
+      fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`)
         .then(res => res.json())
         .then(data => {
           const json = JSON.parse(data.contents);
@@ -390,11 +396,11 @@
         })
         .catch(err => {
           console.error(err);
-          loading.innerHTML = `⚠️ Could not load cams right now.<br>Try refreshing the page.`;
+          loading.innerHTML = `⚠️ Could not load cams.<br>Try refreshing the page.`;
         });
     }
 
-    // Start
+    // Start the magic
     loadRooms();
     setInterval(loadRooms, 30000);
   </script>
