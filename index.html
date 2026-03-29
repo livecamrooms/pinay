@@ -1,408 +1,687 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="google-site-verification" content="iyy4ypHCTnZrWsfDXW7uHKfSfswDdnClhNz51txXpsg" />
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pinay Live Cam Rooms</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>Pinay Live Cams – Filipino Girls Live Streaming Online Now</title>
+  <meta name="description" content="Watch Pinay and Filipina girls live on cam right now. Browse hundreds of free live streams from Filipino performers. New rooms updated in real-time." />
+  <meta name="keywords" content="pinay live cam, filipina live stream, pinay cam girls, filipina webcam, pinay online now, live filipina cams" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://yourdomain.github.io/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Pinay Live Cams – Filipino Girls Live Streaming Online Now" />
+  <meta property="og:description" content="Browse live Pinay and Filipina cam rooms updated in real-time. 100% free to watch." />
+  <meta property="og:url" content="https://yourdomain.github.io/" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Pinay Live Cams – Filipino Girls Live Online" />
+  <meta name="twitter:description" content="Live Pinay and Filipina webcam rooms updated in real-time." />
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --pink: #ff3ea5;
-      --neon: #ff4fb0;
+      --bg: #0d0d0d;
+      --bg2: #141414;
+      --bg3: #1a1a1a;
+      --border: #2a2a2a;
+      --text: #e8e8e8;
+      --text-muted: #888;
+      --accent: #ff6b9d;
+      --accent2: #ff4476;
+      --live: #ff3b3b;
+      --online-dot: #22c55e;
+      --card-hover: #222;
     }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
 
     body {
-      margin: 0;
-      font-family: 'Inter', system-ui, sans-serif;
-      background: #0a0a0f;
-      color: white;
-      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
     }
 
-    header {
-      background: linear-gradient(135deg, #1a0022, #330033);
-      padding: 30px 20px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(255, 62, 165, 0.3);
-    }
-
-    .header-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 700;
-      background: linear-gradient(90deg, #ff3ea5, #ff8cc6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -1px;
-    }
-
-    .online-count {
-      font-size: 1rem;
-      color: #00ffa6;
-      margin-top: 8px;
-      font-weight: 500;
-    }
-
-    .main-content {
+    /* AGE DISCLAIMER OVERLAY */
+    #age-gate {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.97);
+      z-index: 9999;
       display: flex;
-      gap: 24px;
-      max-width: 1600px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    .sidebar {
-      width: 260px;
-      background: #111118;
-      padding: 24px;
-      border-radius: 20px;
-      border: 1px solid rgba(255,62,165,0.15);
-      height: fit-content;
-      position: sticky;
-      top: 20px;
-      align-self: start;
-    }
-
-    .sidebar h3 {
-      color: var(--pink);
-      font-size: 1.35rem;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .category-btn {
-      display: block;
-      width: 100%;
-      background: transparent;
-      border: none;
-      color: white;
-      padding: 14px 18px;
-      margin-bottom: 8px;
-      border-radius: 12px;
-      text-align: left;
-      font-size: 1.05rem;
-      font-weight: 500;
-      transition: all 0.3s;
-    }
-
-    .category-btn:hover {
-      background: #1f1f28;
-    }
-
-    .category-btn.active {
-      background: var(--pink);
-      color: white;
-      box-shadow: 0 0 20px rgba(255,62,165,0.5);
-    }
-
-    .content {
-      flex: 1;
-    }
-
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       padding: 20px;
-      background: #111118;
-      border-radius: 16px;
-      margin-bottom: 20px;
     }
+    #age-gate.hidden { display: none; }
 
-    .search-input {
-      background: #1f1f28;
+    .age-gate-box {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+    .age-gate-box h2 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      color: var(--accent);
+    }
+    .age-gate-box p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .age-gate-box p strong { color: var(--text); }
+    .age-gate-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-enter {
+      background: var(--accent);
+      color: #fff;
       border: none;
-      padding: 12px 24px;
-      border-radius: 9999px;
-      color: white;
-      width: 280px;
+      padding: 12px 32px;
+      border-radius: 8px;
       font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-enter:hover { background: var(--accent2); }
+    .btn-leave {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 12px 32px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-leave:hover { border-color: #555; color: var(--text); }
+    .age-disclaimer {
+      margin-top: 24px;
+      font-size: 0.75rem;
+      color: #555;
+      line-height: 1.5;
     }
 
-    .search-input:focus {
-      outline: none;
-      box-shadow: 0 0 0 4px rgba(255, 62, 165, 0.4);
+    /* HEADER */
+    header {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 0 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-
-    #rooms {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 24px;
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      gap: 16px;
     }
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo span { color: var(--text); }
+    .live-badge {
+      background: var(--live);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    #room-count {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    #room-count strong { color: var(--online-dot); }
+    .refresh-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .refresh-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-    .card {
-      background: #14141c;
+    /* TAGS FILTER BAR */
+    .filter-bar {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 20px;
+    }
+    .filter-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .filter-label { font-size: 0.8rem; color: var(--text-muted); margin-right: 4px; }
+    .tag-chip {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 4px 12px;
       border-radius: 20px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .tag-chip:hover, .tag-chip.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* SORT BAR */
+    .sort-bar {
+      max-width: 1400px;
+      margin: 20px auto 0;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .sort-bar h1 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .sort-select {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      outline: none;
+    }
+    .sort-select:focus { border-color: var(--accent); }
+
+    /* GRID */
+    .grid-wrapper {
+      max-width: 1400px;
+      margin: 16px auto 40px;
+      padding: 0 20px;
+    }
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    /* ROOM CARD */
+    .room-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
       overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .room-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+    }
+    .thumb-wrap {
       position: relative;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      aspect-ratio: 16/9;
+      background: #111;
+      overflow: hidden;
     }
-
-    .card:hover {
-      transform: scale(1.06) translateY(-12px);
-      box-shadow: 0 0 40px rgba(255, 62, 165, 0.6);
-    }
-
-    .thumb-wrapper {
-      position: relative;
-      height: 210px;
-    }
-
-    .thumb {
+    .thumb-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-    }
-
-    .live-badge {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      background: #ff1744;
-      color: white;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 9999px;
-      letter-spacing: 1px;
-      animation: pulse 1.8s infinite;
-      box-shadow: 0 0 15px #ff1744;
-    }
-
-    .viewerBadge {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      background: #00ffa6;
-      color: black;
-      font-size: 13px;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 9999px;
-    }
-
-    .info {
-      padding: 16px;
-    }
-
-    .username {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .tags {
-      color: var(--neon);
-      font-size: 0.9rem;
-      margin-bottom: 12px;
-    }
-
-    .watch {
       display: block;
-      background: linear-gradient(90deg, #ff3ea5, #ff8cc6);
-      color: white;
-      text-align: center;
-      padding: 14px;
-      border-radius: 9999px;
+      transition: transform 0.3s;
+    }
+    .room-card:hover .thumb-wrap img { transform: scale(1.04); }
+    .thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .viewers-badge {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: rgba(0,0,0,0.75);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .viewers-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--online-dot);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .hd-badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.65rem;
       font-weight: 700;
-      text-decoration: none;
-      transition: all 0.3s;
+      padding: 2px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
     }
 
-    .watch:hover {
-      background: linear-gradient(90deg, #ff8cc6, #ff3ea5);
-      transform: scale(1.03);
-      box-shadow: 0 0 25px rgba(255, 62, 165, 0.8);
+    .room-info {
+      padding: 10px 12px 12px;
     }
-
-    footer {
-      text-align: center;
-      padding: 30px;
+    .room-name {
       font-size: 0.9rem;
-      opacity: 0.6;
-      background: #0a0a0f;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .room-subject {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 2.1em;
+      margin-bottom: 8px;
+    }
+    .room-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .room-tag {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.68rem;
+      padding: 2px 7px;
+      border-radius: 20px;
+    }
+    .room-tag.highlight {
+      border-color: var(--accent);
+      color: var(--accent);
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.65; }
-    }
-
-    #loading {
+    /* LOADING / ERROR STATES */
+    .state-msg {
+      grid-column: 1 / -1;
       text-align: center;
-      padding: 60px;
-      font-size: 1.3rem;
-      color: var(--pink);
+      padding: 60px 20px;
+      color: var(--text-muted);
+    }
+    .state-msg h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text); }
+    .state-msg p { font-size: 0.85rem; line-height: 1.6; }
+
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 32px 20px;
+      margin-top: 20px;
+    }
+    .footer-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .footer-disclaimer {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-size: 0.78rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .footer-disclaimer strong { color: #777; }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .footer-links a {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      text-decoration: none;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy {
+      font-size: 0.75rem;
+      color: #444;
     }
 
-    @media (max-width: 900px) {
-      .main-content { flex-direction: column; }
-      .sidebar { width: 100%; position: static; }
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .rooms-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+      .age-gate-box { padding: 28px 20px; }
+      .header-inner { height: 52px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="header-title">🇵🇭 Pinay Live Cam Rooms</div>
-    <div id="onlineCount" class="online-count">Loading live models...</div>
-  </header>
 
-  <div class="main-content">
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-      <h3>📂 Categories</h3>
-      <button class="category-btn active" data-filter="all" onclick="setFilter('all')">🌍 All Rooms</button>
-      <button class="category-btn" data-filter="pinay" onclick="setFilter('pinay')">🇵🇭 Pinay / Filipina</button>
-      <button class="category-btn" data-filter="asian" onclick="setFilter('asian')">🌏 Asian</button>
-      <button class="category-btn" data-filter="latina" onclick="setFilter('latina')">🇧🇷 Latina</button>
-      <button class="category-btn" data-filter="blonde" onclick="setFilter('blonde')">👱 Blonde</button>
-      <button class="category-btn" data-filter="petite" onclick="setFilter('petite')">🐱 Petite</button>
-      <button class="category-btn" data-filter="curvy" onclick="setFilter('curvy')">🍑 Curvy / BBW</button>
-      <button class="category-btn" data-filter="mature" onclick="setFilter('mature')">👵 Mature</button>
-      <button class="category-btn" data-filter="teen" onclick="setFilter('teen')">👶 Teen (18+)</button>
-      <button class="category-btn" data-filter="ebony" onclick="setFilter('ebony')">🌑 Ebony</button>
-      
-      <hr style="border-color:#222;margin:20px 0;">
-      <button class="category-btn" data-filter="female" onclick="setFilter('female')">👩 Female</button>
-      <button class="category-btn" data-filter="couple" onclick="setFilter('couple')">👫 Couples</button>
-      <button class="category-btn" data-filter="trans" onclick="setFilter('trans')">⚧ Trans</button>
-    </aside>
-
-    <!-- MAIN CONTENT -->
-    <div class="content">
-      <div class="controls">
-        <input type="text" id="searchInput" class="search-input" placeholder="Search username..." onkeyup="handleSearch(this.value)">
-        
-        <select onchange="setSort(this.value)" style="padding:12px 20px; border-radius:9999px; background:#1f1f28; color:white; font-size:1rem;">
-          <option value="viewers">Most Viewers</option>
-          <option value="new">Newest</option>
-        </select>
+  <!-- 18+ AGE GATE -->
+  <div id="age-gate">
+    <div class="age-gate-box">
+      <h2>⚠️ Adults Only (18+)</h2>
+      <p>
+        This website contains <strong>explicit adult content</strong> including live webcam performances.<br><br>
+        You must be <strong>18 years of age or older</strong> (or the age of majority in your jurisdiction) to enter this site.
+        By clicking <strong>"I Am 18+"</strong>, you confirm that you are of legal age and consent to view adult content.
+      </p>
+      <div class="age-gate-btns">
+        <button class="btn-enter" onclick="enterSite()">I Am 18+ — Enter</button>
+        <a class="btn-leave" href="https://www.google.com">Leave Site</a>
       </div>
-
-      <div id="loading">Loading live cams...</div>
-      <div id="rooms"></div>
+      <div class="age-disclaimer">
+        All performers on this site are 18 years of age or older.<br>
+        This site is in full compliance with 18 U.S.C. § 2257.<br>
+        Powered by <a href="https://chaturbate.com/?tour=dT9x&campaign=T2CSW&track=default" target="_blank" rel="noopener" style="color:#555">Chaturbate</a>.
+      </div>
     </div>
   </div>
 
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="/">
+        PinayLive<span>.cam</span>
+        <span class="live-badge">LIVE</span>
+      </a>
+      <div class="header-right">
+        <span id="room-count">Loading…</span>
+        <button class="refresh-btn" onclick="loadRooms()">↻ Refresh</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- TAG FILTER BAR -->
+  <div class="filter-bar">
+    <div class="filter-inner">
+      <span class="filter-label">Filter:</span>
+      <button class="tag-chip active" data-tag="all" onclick="setTag('all', this)">All Pinay</button>
+      <button class="tag-chip" data-tag="pinay" onclick="setTag('pinay', this)">Pinay</button>
+      <button class="tag-chip" data-tag="filipina" onclick="setTag('filipina', this)">Filipina</button>
+      <button class="tag-chip" data-tag="asian" onclick="setTag('asian', this)">Asian</button>
+    </div>
+  </div>
+
+  <!-- SORT BAR -->
+  <div class="sort-bar">
+    <h1 id="page-heading">🔴 Pinay &amp; Filipina Live Cams Online Now</h1>
+    <select class="sort-select" id="sort-select" onchange="renderRooms()">
+      <option value="viewers">Most Viewers</option>
+      <option value="newest">Newest</option>
+    </select>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid-wrapper">
+    <div class="rooms-grid" id="rooms-grid">
+      <div class="state-msg">
+        <div class="spinner"></div>
+        <h3>Loading live cams…</h3>
+        <p>Fetching Pinay and Filipina rooms in real-time.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
   <footer>
-    Live rooms update every 30 seconds • Powered by Chaturbate • 18+ Only
+    <div class="footer-inner">
+      <div class="footer-disclaimer">
+        <strong>18+ Adults Only.</strong> All performers on this site are 18 years of age or older.
+        This website operates as an affiliate of Chaturbate.com. All live streams are hosted and operated by Chaturbate.
+        We do not produce, host, or store any video content.
+        This site is in compliance with 18 U.S.C. § 2257 Record-Keeping Requirements.
+        If you believe any content is in violation of applicable law, please report it to Chaturbate directly.
+      </div>
+      <div class="footer-links">
+        <a href="https://chaturbate.com/?tour=dT9x&campaign=T2CSW&track=default" target="_blank" rel="noopener">Chaturbate</a>
+        <a href="https://chaturbate.com/terms/?tour=dT9x&campaign=T2CSW&track=default" target="_blank" rel="noopener">Terms of Service</a>
+        <a href="https://chaturbate.com/privacy/?tour=dT9x&campaign=T2CSW&track=default" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="https://chaturbate.com/support/billing/dmca/?tour=dT9x&campaign=T2CSW&track=default" target="_blank" rel="noopener">DMCA</a>
+        <a href="https://chaturbate.com/stats/2257/?tour=dT9x&campaign=T2CSW&track=default" target="_blank" rel="noopener">2257 Statement</a>
+      </div>
+      <div class="footer-copy">
+        © <span id="year"></span> PinayLive.cam — All Rights Reserved. This site contains adult content and is intended for adults 18 years of age or older only.
+      </div>
+    </div>
   </footer>
 
   <script>
-    let roomsData = [];
-    let currentFilter = "all";
-    let currentSort = "viewers";
-    let currentSearch = "";
+    const WM = 'T2CSW';
+    const AFFILIATE_URL = (username) =>
+      `https://chaturbate.com/${username}/?tour=dT9x&campaign=${WM}&track=default&room_type=public`;
+    const API_BASE = `https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=${WM}&client_ip=request_ip&limit=500&format=json`;
 
-    function setFilter(tag) {
-      currentFilter = tag;
-      document.querySelectorAll('.category-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.filter === tag);
-      });
-      loadRooms(); // re-fetch with server-side filter
+    let allRooms = [];
+    let currentTag = 'all';
+    const PINAY_TAGS = new Set(['pinay', 'filipina', 'philippines', 'pinoy', 'asian filipina', 'filipinahotties']);
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Age gate
+    function enterSite() {
+      sessionStorage.setItem('age_verified', '1');
+      document.getElementById('age-gate').classList.add('hidden');
+    }
+    if (sessionStorage.getItem('age_verified') === '1') {
+      document.getElementById('age-gate').classList.add('hidden');
     }
 
-    function setSort(type) {
-      currentSort = type;
-      renderRooms();
+    // Tag filter
+    function setTag(tag, el) {
+      currentTag = tag;
+      document.querySelectorAll('.tag-chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      if (tag === 'all') {
+        loadRooms();
+      } else {
+        fetchTag(tag).then(rooms => {
+          allRooms = rooms;
+          renderRooms();
+        });
+      }
     }
 
-    function handleSearch(value) {
-      currentSearch = value.toLowerCase().trim();
-      renderRooms();
+    async function fetchTag(tag) {
+      const url = `${API_BASE}&tag=${encodeURIComponent(tag)}`;
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        return (data.results || []).filter(isPinay);
+      } catch (e) {
+        console.warn('Fetch failed for tag', tag, e);
+        return [];
+      }
+    }
+
+    function isPinay(room) {
+      const tags = (room.tags || []).map(t => t.toLowerCase());
+      return tags.some(t =>
+        t === 'pinay' || t === 'filipina' || t === 'philippines' || t === 'pinay' ||
+        t.includes('filipin') || t.includes('pinay')
+      );
+    }
+
+    async function loadRooms() {
+      currentTag = 'all';
+      const grid = document.getElementById('rooms-grid');
+      grid.innerHTML = `<div class="state-msg"><div class="spinner"></div><h3>Loading live cams…</h3><p>Fetching Pinay and Filipina rooms in real-time.</p></div>`;
+      document.getElementById('room-count').innerHTML = 'Loading…';
+
+      try {
+        const [pinayRooms, filipinaRooms, asianRooms] = await Promise.all([
+          fetchTag('pinay'),
+          fetchTag('filipina'),
+          fetchTag('asian')
+        ]);
+
+        // Merge and deduplicate by username
+        const seen = new Set();
+        const merged = [];
+        for (const room of [...pinayRooms, ...filipinaRooms]) {
+          if (!seen.has(room.username)) {
+            seen.add(room.username);
+            merged.push(room);
+          }
+        }
+        // Also include asian rooms if they have pinay/filipina tags
+        for (const room of asianRooms) {
+          if (!seen.has(room.username) && isPinay(room)) {
+            seen.add(room.username);
+            merged.push(room);
+          }
+        }
+
+        allRooms = merged;
+        renderRooms();
+      } catch (e) {
+        grid.innerHTML = `<div class="state-msg"><h3>Could not load rooms</h3><p>The API may be temporarily unavailable. Please try refreshing.<br><br>You can also <a href="https://chaturbate.com/tag/pinay/?tour=dT9x&campaign=${WM}&track=default" target="_blank" rel="noopener" style="color:var(--accent)">browse Pinay rooms on Chaturbate</a> directly.</p></div>`;
+        document.getElementById('room-count').innerHTML = 'Unavailable';
+      }
     }
 
     function renderRooms() {
-      const container = document.getElementById("rooms");
-      const loading = document.getElementById("loading");
-      container.innerHTML = "";
-      loading.style.display = "none";
+      const grid = document.getElementById('rooms-grid');
+      const sort = document.getElementById('sort-select').value;
 
-      let rooms = [...roomsData];
+      let rooms = [...allRooms];
 
-      if (currentSort === "viewers") {
-        rooms.sort((a, b) => b.num_users - a.num_users);
+      if (sort === 'viewers') {
+        rooms.sort((a, b) => (b.num_users || 0) - (a.num_users || 0));
       }
 
-      if (currentSearch) {
-        rooms = rooms.filter(room => 
-          room.username.toLowerCase().includes(currentSearch)
-        );
-      }
+      const count = rooms.length;
+      document.getElementById('room-count').innerHTML =
+        count > 0
+          ? `<strong>${count}</strong> rooms live`
+          : '<span style="color:var(--text-muted)">0 rooms</span>';
 
-      if (rooms.length === 0) {
-        container.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:#ff3ea5;font-size:1.2rem;padding:40px;">
-          No matches found.<br>
-          <button onclick="setFilter('all')" style="margin-top:15px;padding:10px 20px;background:#ff3ea5;color:white;border:none;border-radius:12px;cursor:pointer;">Show All Rooms</button>
-        </p>`;
+      if (count === 0) {
+        grid.innerHTML = `<div class="state-msg"><h3>No rooms found</h3><p>No Pinay or Filipina rooms are live right now.<br>Check back soon or <a href="https://chaturbate.com/tag/pinay/?tour=dT9x&campaign=${WM}&track=default" target="_blank" rel="noopener" style="color:var(--accent)">browse on Chaturbate</a>.</p></div>`;
         return;
       }
 
-      rooms.forEach(room => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-          <div class="thumb-wrapper">
-            <img class="thumb" src="${room.image_url_360x270}" onerror="this.src='https://via.placeholder.com/280x210/1f1f28/ffffff?text=No+Image'">
-            <div class="live-badge">LIVE</div>
-            <div class="viewerBadge">${room.num_users}</div>
-          </div>
-          <div class="info">
-            <div class="username">${room.username}</div>
-            <div class="tags">${room.tags ? room.tags.slice(0,4).join(" • ") : ""}</div>
-            <a class="watch" href="https://chaturbate.com/${room.username}/?tour=T2CSW" target="_blank">
-              ► Watch Live Now
-            </a>
-          </div>
-        `;
-        container.appendChild(card);
-      });
+      grid.innerHTML = rooms.map(room => roomCard(room)).join('');
     }
 
-    function loadRooms() {
-      const loading = document.getElementById("loading");
-      loading.style.display = "block";
+    function roomCard(room) {
+      const href = AFFILIATE_URL(room.username);
+      const viewers = room.num_users != null ? room.num_users.toLocaleString() : '–';
+      const thumb = room.image_url || room.thumb || '';
+      const subject = escHtml(room.subject || '');
+      const name = escHtml(room.username || '');
+      const isHD = room.hd === 1 || room.hd === true;
 
-      let url = "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=T2CSW&client_ip=request_ip&limit=300";
+      const tags = (room.tags || []).slice(0, 4).map(tag => {
+        const lc = tag.toLowerCase();
+        const hl = (lc === 'pinay' || lc === 'filipina') ? 'highlight' : '';
+        return `<span class="room-tag ${hl}">${escHtml(tag)}</span>`;
+      }).join('');
 
-      // Server-side filtering (confirmed working in 2026)
-      if (currentFilter === "pinay") url += "&tag=pinay";
-      else if (currentFilter === "asian") url += "&tag=asian";
-      else if (currentFilter === "latina") url += "&tag=latina";
-      else if (currentFilter === "blonde") url += "&tag=blonde";
-      else if (currentFilter === "petite") url += "&tag=petite";
-      else if (currentFilter === "curvy") url += "&tag=curvy";
-      else if (currentFilter === "mature") url += "&tag=mature";
-      else if (currentFilter === "teen") url += "&tag=teen";
-      else if (currentFilter === "ebony") url += "&tag=ebony";
-      else if (currentFilter === "female") url += "&gender=f";
-      else if (currentFilter === "couple") url += "&gender=c";
-      else if (currentFilter === "trans") url += "&gender=t";
-
-      // All = no extra param
-
-      fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`)
-        .then(res => res.json())
-        .then(data => {
-          const json = JSON.parse(data.contents);
-          roomsData = json.results || [];
-          document.getElementById("onlineCount").textContent = `${roomsData.length.toLocaleString()} models online right now`;
-          renderRooms();
-        })
-        .catch(err => {
-          console.error(err);
-          loading.innerHTML = `⚠️ Could not load cams.<br>Try refreshing the page.`;
-        });
+      return `
+        <a class="room-card" href="${href}" target="_blank" rel="noopener sponsored"
+           aria-label="Watch ${name} live on Chaturbate">
+          <div class="thumb-wrap">
+            ${thumb
+              ? `<img src="${escHtml(thumb)}" alt="${name} live cam preview" loading="lazy" onerror="this.style.display='none'" />`
+              : '<div style="background:#111;width:100%;height:100%"></div>'
+            }
+            <div class="thumb-overlay"></div>
+            <span class="viewers-badge">${viewers} watching</span>
+            ${isHD ? '<span class="hd-badge">HD</span>' : ''}
+          </div>
+          <div class="room-info">
+            <div class="room-name">${name}</div>
+            ${subject ? `<div class="room-subject">${subject}</div>` : '<div class="room-subject" style="opacity:0"> </div>'}
+            <div class="room-tags">${tags}</div>
+          </div>
+        </a>`;
     }
 
-    // Start the magic
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // Auto-refresh every 3 minutes
     loadRooms();
-    setInterval(loadRooms, 30000);
+    setInterval(loadRooms, 3 * 60 * 1000);
   </script>
+
 </body>
 </html>
